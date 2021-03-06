@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Page</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Formulario</h1>
+        <div id="app">
+            <input v-model="message" placeholder="Nombre">  
+            <ul>
+                <li v-for="User"></li>
+            </ul>
+        </div>
+        
+        <script>
+            const apiURL ="http://localhost:8080/Users";
+            new Vue({
+                el: '#app',
+                data(){
+                    return{
+                        users: []
+                    }
+                },
+                created() {
+                    fetch(apiURL)
+                        .then(response =>{
+                            return response.json();
+                        })
+                        .then(users =>{
+                            this.users = users;
+                        })
+                 }
+            });
+        </script>
+    </body>
+</html>
